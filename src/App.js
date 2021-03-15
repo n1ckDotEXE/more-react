@@ -1,35 +1,15 @@
-import React, { Component } from "react";
-export class App extends Component {
+import React, { PureComponent } from "react";
+export class App extends PureComponent {
 	state = {
-		input: "",
-		toggleSubmit: true,
+		input: "hamster",
 	};
-	onChange = (event) => {
+	handleClickMe = () => {
 		this.setState({
-			[event.target.name]: event.target.value,
+			input: "123",
 		});
 	};
-
-	handleSubmit = () => {
-		this.setState({
-			toggleSubmit: true,
-		});
-	};
-
-	shouldComponentUpdate(nextProps, nextState) {
-		console.log("23 Should Component Update");
-
-		console.log(nextState);
-		if (nextState.input === "123") {
-			return false;
-		}
-
-		if (nextState.input === "hamster") {
-			return false;
-		}
-		return true;
-	}
 	render() {
+		console.log(15, "Inside Render");
 		return (
 			<div
 				style={{
@@ -38,20 +18,9 @@ export class App extends Component {
 					backgroundColor: this.state.backgroundColor,
 				}}
 			>
-				<div>
-					<input
-						type="text"
-						name="input"
-						onChange={this.onChange}
-						value={this.state.input}
-					/>
-				</div>
+				<button onClick={this.handleClickMe}>Click Me</button>
 				<br />
-				<br />
-				<button onClick={this.handleSubmit}>Submit</button>
-				<br />
-				<br />
-				{this.state.input}
+				<div>{this.state.input}</div>
 			</div>
 		);
 	}
