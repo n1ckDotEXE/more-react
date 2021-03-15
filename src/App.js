@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			name: "Hamster",
+		};
+
+		console.log("11 ", "Inside constructor");
+	}
+
+	componentDidMount() {
+		console.log("15 ", "Component Did Mount");
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		console.log("19 Component Did Update");
+		console.log(prevState, "prevState");
+	}
+
+	render() {
+		return (
+			<div style={{ textAlign: "center", marginTop: 50 }}>
+				<div> Name: {this.state.name} </div>
+				<br />
+				<button
+					onClick={() =>
+						this.setState({
+							name: "Not a hamster",
+						})
+					}
+				>
+					Toggle Me
+				</button>
+			</div>
+		);
+	}
 }
 
 export default App;
