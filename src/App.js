@@ -6,6 +6,8 @@ export class App extends Component {
 
 		this.state = {
 			name: "Hamster",
+			backgroundColor: "red",
+			isToggle: false,
 		};
 
 		console.log("11 ", "Inside constructor");
@@ -18,11 +20,28 @@ export class App extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		console.log("19 Component Did Update");
 		console.log(prevState, "prevState");
+		console.log(this.state, " this.state");
+
+		console.log(prevState.name !== this.state.name);
+
+		if (prevState.name !== this.state.name) {
+			this.changeBackgroundColor();
+		}
 	}
+
+	changeBackgroundColor = () => {
+		this.setState({ backgroundColor: "blue" });
+	};
 
 	render() {
 		return (
-			<div style={{ textAlign: "center", marginTop: 50 }}>
+			<div
+				style={{
+					textAlign: "center",
+					marginTop: 50,
+					backgroundColor: this.state.backgroundColor,
+				}}
+			>
 				<div> Name: {this.state.name} </div>
 				<br />
 				<button
